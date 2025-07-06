@@ -1,165 +1,199 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabinet d'Imagerie Médicale Dr Kibou Farid - CIMKF</title>
+    <title data-key="page_title">Cabinet d'Imagerie Médicale Dr Kibou Farid - CIMKF</title> 
+    
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="rtl.css"> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo CIMKF" class="logo-img">
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link active">Accueil</a></li>
-                    <li><a href="about.html" class="nav-link">À propos</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo CIMKF" class="logo-img"> 
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-header">
-                <h1>Cabinet d'Imagerie Médicale Dr Kibou Farid</h1>
-                <p>Excellence en imagerie médicale depuis plus de 15 ans</p>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active" data-key="nav_home">Accueil</a></li>
+                <li><a href="about.html" class="nav-link" data-key="nav_about">À propos</a></li>
+                <li><a href="services.html" class="nav-link" data-key="nav_services">Services</a></li>
+                <li><a href="contact.html" class="nav-link" data-key="nav_contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button id="lang-fr">Français</button>
+                <button id="lang-ar">العربية</button>
             </div>
-            <div class="hero-content">
-                <div class="hero-buttons">
-                    <a href="services.html" class="btn btn-primary">Nos Services</a>
-                    <a href="contact.html" class="btn btn-appointment">
-                        <i class="fas fa-calendar-plus"></i>
-                        Prendre Rendez-vous
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Overview -->
-        <section class="services-overview">
-            <div class="container">
-                <h2>Nos Équipements de Pointe</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-x-ray"></i>
-                        <h3>Scanner (TDM)</h3>
-                        <p>Tomographie computerisée haute définition pour diagnostic précis</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-heartbeat"></i>
-                        <h3>Échographie</h3>
-                        <p>2 machines échographiques pour examens spécialisés</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-user-md"></i>
-                        <h3>Mammographie</h3>
-                        <p>Mammographie numérique pour dépistage et diagnostic</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-bone"></i>
-                        <h3>Radiographie</h3>
-                        <p>Radiographie numérique standard haute résolution</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Preview -->
-        <section class="about-preview">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Dr Kibou Farid</h2>
-                        <h3>Radiologue expérimenté</h3>
-                        <p>Avec plus de 15 ans d'expérience dans le domaine de l'imagerie médicale, le Dr Kibou Farid offre des services de diagnostic de haute qualité dans un environnement moderne et rassurant.</p>
-                        <a href="about.html" class="btn btn-primary">En savoir plus</a>
-                    </div>
-                    <div class="about-image">
-                        <img src="doctor.png" alt="Dr Kibou Farid" class="doctor-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Info -->
-        <section class="contact-info">
-            <div class="container">
-                <h2>Horaires d'Ouverture</h2>
-                <div class="hours-grid">
-                    <div class="hours-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Samedi - Jeudi</h4>
-                            <p>08h00 - 17h00</p>
-                        </div>
-                    </div>
-                    <div class="hours-item">
-                        <i class="fas fa-times-circle"></i>
-                        <div>
-                            <h4>Vendredi</h4>
-                            <p>Fermé</p>
-                        </div>
-                    </div>
-                    <div class="hours-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Téléphone</h4>
-                            <p>0541334654</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Cabinet d'Imagerie Médicale</h3>
-                    <p>Dr Kibou Farid - CIMKF</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="about.html">À propos</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-phone"></i> 0541334654</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Cité M'HAMMEDI, Berrouaghia</p>
-                    <p><i class="fas fa-clock"></i> Sam-Jeu: 08h-17h | Ven: Fermé</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Cabinet d'Imagerie Médicale Dr Kibou Farid. Tous droits réservés.</p>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </footer>
+    </nav>
+</header>
 
-    <!-- Floating Contact Button -->
-    <div class="floating-contact-btn">
-        <a href="contact.html" class="fab-btn" title="Prendre Rendez-vous">
-            <i class="fas fa-stethoscope"></i>
-        </a>
+<main>
+    <section class="hero">
+        <div class="hero-header">
+            <h1 data-key="hero_title">Cabinet d'Imagerie Médicale Dr Kibou Farid</h1>
+            <p data-key="hero_subtitle">Excellence en imagerie médicale depuis plus de 15 ans</p>
+        </div>
+        <div class="hero-content">
+            <div class="hero-buttons">
+                <a href="services.html" class="btn btn-primary" data-key="hero_btn_services">Nos Services</a>
+                <a href="contact.html" class="btn btn-appointment">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span data-key="hero_btn_appointment">Prendre Rendez-vous</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-overview">
+        <div class="container">
+            <h2 data-key="equipments_title">Nos Équipements de Pointe</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-x-ray"></i>
+                    <h3 data-key="service_scanner_title">Scanner (TDM)</h3>
+                    <p data-key="service_scanner_desc">Tomographie computerisée haute définition pour diagnostic précis</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3 data-key="service_echo_title">Échographie</h3>
+                    <p data-key="service_echo_desc">2 machines échographiques pour examens spécialisés</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-user-md"></i>
+                    <h3 data-key="service_mammo_title">Mammographie</h3>
+                    <p data-key="service_mammo_desc">Mammographie numérique pour dépistage et diagnostic</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bone"></i>
+                    <h3 data-key="service_radio_title">Radiographie</h3>
+                    <p data-key="service_radio_desc">Radiographie numérique standard haute résolution</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 data-key="about_title">Dr Kibou Farid</h2>
+                    <h3 data-key="about_subtitle">Radiologue expérimenté</h3>
+                    <p data-key="about_desc">Avec plus de 15 ans d'expérience dans le domaine de l'imagerie médicale, le Dr Kibou Farid offre des services de diagnostic de haute qualité dans un environnement moderne et rassurant.</p>
+                    <a href="about.html" class="btn btn-primary" data-key="about_btn_more">En savoir plus</a>
+                </div>
+                <div class="about-image">
+                    <img src="doctor.png" alt="Dr Kibou Farid" class="doctor-img"> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container">
+        <h2 data-key="gallery_title">Galerie Photos</h2>
+        <div class="gallery-placeholder" style="text-align: center; padding: 50px; border: 2px dashed #ccc;">
+            <p data-key="gallery_text">L'espace galerie pour les photos de la clinique sera affiché ici.</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="container">
+        <h2 data-key="testimonials_title">Témoignages de Patients</h2>
+        <div class="testimonial">
+            <p class="testimonial-text" data-key="testimonial_1_text">"Excellent service, personnel accueillant et médecin très compétent. Je recommande vivement."</p>
+            <p class="testimonial-author" data-key="testimonial_1_author">- Mohammed A.</p>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-text" data-key="testimonial_2_text">"الخدمة كانت رائعة والتنظيم ممتاز. الدكتور فريد محترف جداً ويشرح الحالة بوضوح."</p>
+            <p class="testimonial-author" data-key="testimonial_2_author">- فاطمة الزهراء ب.</p>
+        </div>
+    </section>
+
+    <section id="faq" class="container">
+        <h2 data-key="faq_title">Questions Fréquentes (FAQ)</h2>
+        <div class="faq-item">
+            <h3 data-key="faq_1_q">Comment prendre un rendez-vous?</h3>
+            <p data-key="faq_1_a">Vous pouvez prendre rendez-vous en nous appelant directement ou en utilisant le formulaire sur notre page de contact.</p>
+        </div>
+         <div class="faq-item">
+            <h3 data-key="faq_2_q">Quels sont les délais pour obtenir les résultats?</h3>
+            <p data-key="faq_2_a">Les délais varient selon le type d'examen, mais nous nous efforçons de livrer les résultats le plus rapidement possible.</p>
+        </div>
+    </section>
+
+    <section class="contact-info">
+        <div class="container">
+            <h2 data-key="hours_title">Horaires d'Ouverture</h2>
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4 data-key="hours_sat_thu">Samedi - Jeudi</h4>
+                        <p>08h00 - 17h00</p>
+                    </div>
+                </div>
+                <div class="hours-item">
+                    <i class="fas fa-times-circle"></i>
+                    <div>
+                        <h4 data-key="hours_fri">Vendredi</h4>
+                        <p data-key="hours_closed">Fermé</p>
+                    </div>
+                </div>
+                <div class="hours-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4 data-key="hours_phone">Téléphone</h4>
+                        <p>0541334654</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-key="footer_clinic_name">Cabinet d'Imagerie Médicale</h3>
+                <p data-key="footer_doctor_name">Dr Kibou Farid - CIMKF</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-key="footer_nav_title">Navigation</h4>
+                <ul>
+                    <li><a href="index.html" data-key="nav_home">Accueil</a></li>
+                    <li><a href="about.html" data-key="nav_about">À propos</a></li>
+                    <li><a href="services.html" data-key="nav_services">Services</a></li>
+                    <li><a href="contact.html" data-key="nav_contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 data-key="footer_contact_title">Contact</h4>
+                <p><i class="fas fa-phone"></i> 0541334654</p>
+                <p><i class="fas fa-map-marker-alt"></i><span data-key="footer_address"> Cité M'HAMMEDI, Berrouaghia</span></p>
+                <p><i class="fas fa-clock"></i><span data-key="footer_hours"> Sam-Jeu: 08h-17h | Ven: Fermé</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-key="footer_copyright">&copy; 2025 Cabinet d'Imagerie Médicale Dr Kibou Farid. Tous droits réservés.</p>
+        </div>
     </div>
+</footer>
 
-    <script src="script.js"></script>
+<div class="floating-contact-btn">
+    <a href="contact.html" class="fab-btn" title="Prendre Rendez-vous">
+        <i class="fas fa-stethoscope"></i>
+    </a>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
