@@ -1451,3 +1451,40 @@ textarea:focus,
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
+/* RTL Specific Styles */
+body[dir="rtl"] {
+    font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+body[dir="rtl"] .about-content {
+    flex-direction: column; /* Stays column, but text aligns right */
+}
+
+body[dir="rtl"] * {
+    text-align: right !important;
+}
+
+body[dir="rtl"] ul, body[dir="rtl"] .nav-menu {
+    padding-right: 0; /* Reset padding for RTL */
+}
+
+body[dir="rtl"] .nav-links li {
+    margin-left: 0;
+    margin-right: 25px;
+}
+
+body[dir="rtl"] #testimonials .testimonial {
+    border-left: none;
+    border-right: 4px solid #5a7d4a;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+body[dir="rtl"] .testimonial-author {
+    text-align: right !important;
+}
+
+body[dir="rtl"] .hero-buttons .btn i {
+    margin-left: 8px; /* Add margin to the left of the icon in RTL */
+    margin-right: 0;
+}
