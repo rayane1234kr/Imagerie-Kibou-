@@ -1,13 +1,16 @@
 // =======================================================
-// || كود جافاسكريبت نظيف ومضمون - استبدل كل ما في ملفك بهذا ||
+// || كود جافاسكريبت تشخيصي ونهائي - استبدل كل ما في ملفك بهذا ||
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    console.log("السكريبت بدأ بالعمل: DOMContentLoaded");
 
     // --- 1. Logic for Language Switcher ---
     const languageSwitcher = document.querySelector('.language-switcher');
     
     if (languageSwitcher) {
+        console.log("تم العثور على عنصر تبديل اللغة.");
         const langButtons = {
             fr: document.getElementById('lang-fr'),
             ar: document.getElementById('lang-ar')
@@ -18,20 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // تأكد من أن اسم الملف صحيح وفي نفس المجلد
                 const response = await fetch('translations.json');
+                console.log("محاولة جلب ملف translations.json");
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    // إذا لم يتم العثور على الملف أو حدث خطأ
+                    throw new Error(`خطأ في الشبكة: لم يتم العثور على الملف أو حدث خطأ آخر. الحالة: ${response.status}`);
                 }
+                
                 translations = await response.json();
+                console.log("تم تحميل ملف الترجمة بنجاح!");
+                
                 const savedLang = localStorage.getItem('language') || 'fr';
                 setLanguage(savedLang);
+
             } catch (error) {
-                console.error("Could not load translations file:", error);
+                console.error("فشل تحميل ملف الترجمة:", error);
+                // عرض رسالة خطأ للمستخدم في الصفحة
+                alert("خطأ: لا يمكن تحميل ملف الترجمة 'translations.json'. يرجى التأكد من وجود الملف في نفس مجلد المشروع وأن اسمه صحيح.");
             }
         }
 
         function setLanguage(lang) {
             if (!translations[lang] || !langButtons[lang]) {
-                console.error(`Language '${lang}' or its button is not found.`);
+                console.error(`اللغة '${lang}' أو زرها غير موجود.`);
                 return;
             }
 
@@ -45,15 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            document.querySelectorAll('[data-placeholder-key]').forEach(element => {
-                const key = element.getAttribute('data-placeholder-key');
-                 if (translations[lang] && translations[lang][key] !== undefined) {
-                    element.placeholder = translations[lang][key];
-                }
-            });
-
             updateButtonStyles(lang);
             localStorage.setItem('language', lang);
+            console.log(`تم تغيير اللغة إلى: ${lang}`);
         }
 
         function updateButtonStyles(activeLang) {
@@ -72,13 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = event.target.closest('button');
             if (button) {
                 const lang = button.id.split('-')[1];
+                console.log(`تم النقر على زر اللغة: ${lang}`);
                 setLanguage(lang);
             }
         });
 
         loadTranslations();
     } else {
-        console.error("Language switcher element not found.");
+        console.error("عنصر تبديل اللغة غير موجود في الصفحة.");
+        alert("خطأ في برمجة الصفحة: عنصر تبديل اللغة غير موجود.");
     }
 
     // --- 2. Logic for Hamburger Menu ---
@@ -86,12 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.querySelector('.nav-menu');
 
     if (hamburger && navMenu) {
+        console.log("تم العثور على قائمة الهامبرغر.");
         hamburger.addEventListener('click', (event) => {
-            event.stopPropagation(); // يمنع انتشار النقرة
+            event.stopPropagation();
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            console.log("تم النقر على قائمة الهامبرغر.");
         });
     } else {
-         console.error("Hamburger menu or nav menu element not found.");
+         console.error("قائمة الهامبرغر أو عنصر القائمة غير موجود.");
     }
 });
