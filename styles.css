@@ -1488,3 +1488,36 @@ body[dir="rtl"] .hero-buttons .btn i {
     margin-left: 8px; /* Add margin to the left of the icon in RTL */
     margin-right: 0;
 }
+/* ========================================= */
+/* الكود الجديد الخاص بتصميم أزرار تبديل اللغة  */
+/* ========================================= */
+
+.language-switcher {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px; /* حواف دائرية بالكامل */
+    overflow: hidden;
+    margin-left: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.language-switcher button {
+    padding: 8px 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.language-switcher button:first-child {
+    border-right: 1px solid #e0e0e0; /* خط فاصل بين اللغتين */
+}
+
+/* شكل الزر عندما تكون اللغة نشطة */
+.language-switcher button.lang-active {
+    background-color: var(--primary-color); /* استخدام اللون الأساسي للثيم */
+    color: var(--white);
+}
