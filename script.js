@@ -336,3 +336,94 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+// =================================================================
+// ||  الكود الجديد الخاص بتبديل اللغة - قم بلصق هذا الجزء في نهاية ملفك  ||
+// =================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const languageSwitcher = document.querySelector('.language-switcher');
+    
+    // التأكد من وجود أزرار اللغة قبل إضافة المستمع
+    if(languageSwitcher) {
+        const langButtons = {
+            fr: document.getElementById('lang-fr'),
+            ar: document.getElementById('lang-ar')
+        };
+
+        let translations = {};
+
+        // جلب ملف الترجمة
+        async function loadTranslations() {
+            try {
+                const response = await fetch('translations.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                translations = await response.json();
+                // تحديد اللغة من الذاكرة أو من المتصفح
+                const savedLang = localStorage.getItem('language') || 'fr';
+                setLanguage(savedLang);
+            } catch (error) {
+                console.error("Could not load translations:", error);
+            }
+        }
+
+        // دالة تطبيق اللغة على الصفحة
+        function setLanguage(lang) {
+            if (!translations[lang]) {
+                console.error(`Language ${lang} not found in translations.`);
+                return;
+            }
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            updateButtonStyles(lang);
+            localStorage.setItem('language', lang);
+        }
+
+        // تحديث تصميم الزر النشط
+        function updateButtonStyles(activeLang) {
+             for (const lang in langButtons) {
+                if (langButtons[lang]) { // التأكد من أن الزر موجود
+                    if (lang === activeLang) {
+                        langButtons[lang].classList.add('lang-active');
+                    } else {
+                        langButtons[lang].classList.remove('lang-active');
+                    }
+                }
+            }
+        }
+
+        // إضافة مستمع النقر لأزرار اللغة
+        languageSwitcher.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const lang = event.target.id.split('-')[1];
+                setLanguage(lang);
+            }
+        });
+
+        // تشغيل عملية الترجمة عند تحميل الصفحة
+        loadTranslations();
+    }
+
+    // الكود الخاص بقائمة الهامبرغر - تأكد من أنه لا يتعارض مع كودك الحالي
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if(hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+});
+
