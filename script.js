@@ -433,3 +433,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ==========================================================
+// ||  الكود الجديد لتشغيل نموذج الاتصال - قم بلصقه في نهاية ملف script.js  ||
+// ==========================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const action = "https://formspree.io/f/YOUR_UNIQUE_CODE"; // <-- غيّر هذا الرابط
+
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Merci! Votre message a été envoyé avec succès.';
+                    formMessage.style.color = 'green';
+                    contactForm.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            formMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            formMessage.textContent = 'Oops! Une erreur s\'est produite. Veuillez réessayer.';
+                        }
+                        formMessage.style.color = 'red';
+                    })
+                }
+            }).catch(error => {
+                formMessage.textContent = 'Oops! Une erreur s\'est produite. Veuillez réessayer.';
+                formMessage.style.color = 'red';
+            });
+        });
+    }
+});
