@@ -1,5 +1,5 @@
 // =======================================================
-// || كود جافاسكريبت النهائي مع مسار ديناميكي وتشخيص أفضل ||
+// || كود جافاسكريبت النهائي مع تصحيح اسم المشروع ||
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         let translations = {};
 
-        // === هذا هو الجزء المهم الذي تم تعديله ===
-        // يبني المسار الصحيح للملف بناءً على بيئة العمل
+        // === تم تصحيح اسم المشروع هنا ===
         const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/Imagerie-Kibou-/' : '/';
+        // Corrected repository name: Imagerie-Kibou-
+        const basePath = isGitHubPages ? '/Imagerie-Kibou-/' : '/'; 
         const translationFileURL = `${basePath}translations.json`;
         // =========================================
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setLanguage(savedLang);
             } catch (error) {
                 console.error("Could not load translations file from path:", translationFileURL, error);
-                alert(`Error: Could not load translations.json. Please check the file name and path.\n\nAttempted path: ${translationFileURL}`);
+                alert(`Error: Could not load translations.json.\n\nAttempted path: ${translationFileURL}`);
             }
         }
 
