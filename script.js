@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // === هذا هو الجزء المهم الذي تم تعديله ===
         // يبني المسار الصحيح للملف بناءً على بيئة العمل
         const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/Imagerie-Kibo-/' : '/';
+        const basePath = isGitHubPages ? '/Imagerie-Kibou-/' : '/';
         const translationFileURL = `${basePath}translations.json`;
         // =========================================
 
