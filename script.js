@@ -1,51 +1,54 @@
 // =======================================================
-// || كود جافاسكريبت تشخيصي ونهائي - استبدل كل ما في ملفك بهذا ||
+// || كود جافاسكريبت النهائي مع مسار ديناميكي وتشخيص أفضل ||
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Logic for Hamburger Menu ---
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-    console.log("السكريبت بدأ بالعمل: DOMContentLoaded");
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', (event) => {
+            event.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
-    // --- 1. Logic for Language Switcher ---
+    // --- 2. Logic for Language Switcher ---
     const languageSwitcher = document.querySelector('.language-switcher');
     
     if (languageSwitcher) {
-        console.log("تم العثور على عنصر تبديل اللغة.");
         const langButtons = {
             fr: document.getElementById('lang-fr'),
             ar: document.getElementById('lang-ar')
         };
         let translations = {};
 
+        // === هذا هو الجزء المهم الذي تم تعديله ===
+        // يبني المسار الصحيح للملف بناءً على بيئة العمل
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const basePath = isGitHubPages ? '/Imagerie-Kibo-/' : '/';
+        const translationFileURL = `${basePath}translations.json`;
+        // =========================================
+
         async function loadTranslations() {
             try {
-                // تأكد من أن اسم الملف صحيح وفي نفس المجلد
-                const response = await fetch('/Imagerie-Kibo-/translations.json');
-
-
-                console.log("محاولة جلب ملف translations.json");
-                
+                const response = await fetch(translationFileURL);
                 if (!response.ok) {
-                    // إذا لم يتم العثور على الملف أو حدث خطأ
-                    throw new Error(`خطأ في الشبكة: لم يتم العثور على الملف أو حدث خطأ آخر. الحالة: ${response.status}`);
+                    throw new Error(`Error fetching file. Status: ${response.status}`);
                 }
-                
                 translations = await response.json();
-                console.log("تم تحميل ملف الترجمة بنجاح!");
-                
                 const savedLang = localStorage.getItem('language') || 'fr';
                 setLanguage(savedLang);
-
             } catch (error) {
-                console.error("فشل تحميل ملف الترجمة:", error);
-                // عرض رسالة خطأ للمستخدم في الصفحة
-                alert("خطأ: لا يمكن تحميل ملف الترجمة 'translations.json'. يرجى التأكد من وجود الملف في نفس مجلد المشروع وأن اسمه صحيح.");
+                console.error("Could not load translations file from path:", translationFileURL, error);
+                alert(`Error: Could not load translations.json. Please check the file name and path.\n\nAttempted path: ${translationFileURL}`);
             }
         }
 
         function setLanguage(lang) {
             if (!translations[lang] || !langButtons[lang]) {
-                console.error(`اللغة '${lang}' أو زرها غير موجود.`);
                 return;
             }
 
@@ -54,24 +57,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key] !== undefined) {
+                if (translations[lang]?.[key]) {
                     element.innerHTML = translations[lang][key];
                 }
             });
             
+            document.querySelectorAll('[data-placeholder-key]').forEach(element => {
+                const key = element.getAttribute('data-placeholder-key');
+                 if (translations[lang]?.[key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+
             updateButtonStyles(lang);
             localStorage.setItem('language', lang);
-            console.log(`تم تغيير اللغة إلى: ${lang}`);
         }
 
         function updateButtonStyles(activeLang) {
             for (const lang in langButtons) {
                 if (langButtons[lang]) {
-                    if (lang === activeLang) {
-                        langButtons[lang].classList.add('lang-active');
-                    } else {
-                        langButtons[lang].classList.remove('lang-active');
-                    }
+                    langButtons[lang].classList.toggle('lang-active', lang === activeLang);
                 }
             }
         }
@@ -80,30 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = event.target.closest('button');
             if (button) {
                 const lang = button.id.split('-')[1];
-                console.log(`تم النقر على زر اللغة: ${lang}`);
                 setLanguage(lang);
             }
         });
 
         loadTranslations();
-    } else {
-        console.error("عنصر تبديل اللغة غير موجود في الصفحة.");
-        alert("خطأ في برمجة الصفحة: عنصر تبديل اللغة غير موجود.");
-    }
-
-    // --- 2. Logic for Hamburger Menu ---
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (hamburger && navMenu) {
-        console.log("تم العثور على قائمة الهامبرغر.");
-        hamburger.addEventListener('click', (event) => {
-            event.stopPropagation();
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            console.log("تم النقر على قائمة الهامبرغر.");
-        });
-    } else {
-         console.error("قائمة الهامبرغر أو عنصر القائمة غير موجود.");
     }
 });
