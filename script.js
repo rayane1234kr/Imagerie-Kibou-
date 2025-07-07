@@ -1,15 +1,19 @@
 // =======================================================
-// || كود جافاسكريبت النهائي مع تصحيح اسم المشروع ||
+// || النسخة النهائية النظيفة والمضمونة لملف script.js ||
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+
     // --- 1. Logic for Hamburger Menu ---
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', (event) => {
+            // يمنع أي سلوك آخر عند النقر
+            event.preventDefault(); 
             event.stopPropagation();
+            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -25,25 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         let translations = {};
 
-        // === تم تصحيح اسم المشروع هنا ===
         const isGitHubPages = window.location.hostname.includes('github.io');
-        // Corrected repository name: Imagerie-Kibou-
         const basePath = isGitHubPages ? '/Imagerie-Kibou-/' : '/'; 
         const translationFileURL = `${basePath}translations.json`;
-        // =========================================
 
         async function loadTranslations() {
             try {
                 const response = await fetch(translationFileURL);
                 if (!response.ok) {
-                    throw new Error(`Error fetching file. Status: ${response.status}`);
+                    throw new Error(`Failed to fetch translations. Status: ${response.status}`);
                 }
                 translations = await response.json();
                 const savedLang = localStorage.getItem('language') || 'fr';
                 setLanguage(savedLang);
             } catch (error) {
-                console.error("Could not load translations file from path:", translationFileURL, error);
-                alert(`Error: Could not load translations.json.\n\nAttempted path: ${translationFileURL}`);
+                console.error("Fatal Error: Could not load or parse translations file.", error);
+                alert("A critical error occurred while loading language data. Please contact support.");
             }
         }
 
@@ -62,13 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            document.querySelectorAll('[data-placeholder-key]').forEach(element => {
-                const key = element.getAttribute('data-placeholder-key');
-                 if (translations[lang]?.[key]) {
-                    element.placeholder = translations[lang][key];
-                }
-            });
-
             updateButtonStyles(lang);
             localStorage.setItem('language', lang);
         }
@@ -92,4 +86,3 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTranslations();
     }
 });
-
