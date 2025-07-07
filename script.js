@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         async function loadTranslations() {
             try {
                 // تأكد من أن اسم الملف صحيح وفي نفس المجلد
-                const response = await fetch('translations.json');
+                const response = await fetch('./translations.json');
+
                 console.log("محاولة جلب ملف translations.json");
                 
                 if (!response.ok) {
